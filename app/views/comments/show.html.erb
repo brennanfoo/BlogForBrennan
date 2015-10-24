@@ -10,5 +10,5 @@
   <%= @comment.content %>
 </p>
 
-<%= link_to 'Edit', edit_comment_path(@comment) %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Edit', edit_blog_post_comment_path(@blog, @post, @comment) %> |
+<%= link_to 'Back', blog_post_comments_path %>

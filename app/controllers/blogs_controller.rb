@@ -10,6 +10,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    redirect_to(blog_posts_path(@blog))
   end
 
   # GET /blogs/new

@@ -1,10 +1,23 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :get_blog
+  before_action :get_post
+
+  #TODO: Get comments to save post_id when creating comment
+  #TODO: Somehow, posts save blog_id but comments don't save post_id
+
+  def get_blog
+    @blog = Blog.find(params[:blog_id])
+  end
+
+  def get_post
+    @post = Post.find(params[:post_id])
+  end
 
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    redirect_to [@blog, @post]
   end
 
   # GET /comments/1
@@ -24,11 +37,11 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @post.comments.new(comment_params)
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to [@blog, @post, @comment], notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -42,7 +55,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to [@blog, @post, @comment], notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -56,7 +69,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to blog_post_comments_url, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +82,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:title, :content)
+      params.require(:comment).permit(:title, :content, :post_id)
     end
 end

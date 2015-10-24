@@ -10,5 +10,31 @@
   <%= @post.content %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'New Blog Post Comment', new_blog_post_comment_path(@blog, @post) %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comment Title</th>
+      <th>Comment Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.title %></td>
+        <td><%= comment.content %></td>
+        <td><%= link_to 'Show', [@blog, @post, comment] %></td>
+        <td><%= link_to 'Edit', edit_blog_post_comment_path(@blog, @post, comment) %></td>
+        <td><%= link_to 'Destroy', [@blog, @post, comment], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to 'Edit Post', edit_blog_post_path(@blog, @post) %> |
+<%= link_to 'Back To Blog Posts', blog_posts_path %>

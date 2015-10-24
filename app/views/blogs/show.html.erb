@@ -5,5 +5,28 @@
   <%= @blog.title %>
 </p>
 
-<%= link_to 'Edit', edit_blog_path(@blog) %> |
-<%= link_to 'Back', blogs_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Post Title</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @blog.posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= post.content %></td>
+        <td><%= link_to 'Show', [@blog, post] %></td>
+        <td><%= link_to 'Edit', edit_blog_post_path(@blog, post) %></td>
+        <td><%= link_to 'Destroy', [@blog, post], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit Blog', edit_blog_path(@blog) %> |
+<%= link_to 'All Blogs', blogs_path %>
