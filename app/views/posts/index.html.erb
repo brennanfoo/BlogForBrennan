@@ -2,7 +2,7 @@
 <%= link_to 'Edit Blog', edit_blog_path(@blog) %> | 
 <%= link_to 'New Blog Post', new_blog_post_path %>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -14,9 +14,8 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
+        <td><%= link_to post.title, [@blog, post] %></td>
         <td><%= post.content %></td>
-        <td><%= link_to 'Show', [@blog, post] %></td>
         <td><%= link_to 'Edit', edit_blog_post_path(@blog, post) %></td>
         <td><%= link_to 'Destroy', [@blog, post], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

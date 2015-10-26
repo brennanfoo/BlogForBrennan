@@ -1,6 +1,6 @@
-<h1>Listing blogs</h1>
+<h1>Welcome! Here are all the blogs.</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -11,14 +11,20 @@
   <tbody>
     <% @blogs.each do |blog| %>
       <tr>
-        <td><%= blog.title %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-        <td><%= link_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to blog.title, blog %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<% @blogs.each do |blog| %>
+<div class = "row">
+  <div class = "col-md-8">
+  <%= link_to blog.title, blog %>
+  </div>
+</div>
+
+<% end %>
 
 <br>
 
