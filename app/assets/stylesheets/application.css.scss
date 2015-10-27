@@ -16,3 +16,35 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// Most styling from Medium.com 
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+h3 {
+  font-family: "medium-content-sans-serif-font","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif;
+  font-size: 28px;
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  font-weight: bold;
+  color: rgba(0,0,0,0.8)
+}
+
+div.post-content, div.post-content p{
+  font-family: "medium-content-serif-font", Georgia,Cambria,"Times New Roman",Times,serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: -0.004em;
+
+  margin-top: 21px;
+
+  word-wrap: break-word;
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
